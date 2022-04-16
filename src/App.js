@@ -1,10 +1,30 @@
-import styled from "styled-components";
 import React, { useState, useEffect } from "react";
+import styled from "styled-components";
+
+// +++++++++++++++++++++++++++++++++++++++++
+// Components
+// ++++
+
+import Form from "./components/form";
+import Header from "./components/header";
+import Lyrics from "./components/lyrics";
 
 function App() {
+  // +++++++++++++++++++++++++++++++++++++++++
+  // setting the state for the onhandlers and API request.
+  // ++++
+
+  // For the API
   const [data, setData] = useState([]);
+  // For the inputs
   const [artist, setArtist] = useState("Lady Gaga");
   const [song, setSong] = useState("Pokerface");
+  // For the error handling - false = no value in form
+  const [submitted, setSubmitted] = useState(false);
+
+  // +++++++++++++++++++++++++++++++++++++++++
+  // Here the API fetch function get called and each time the user changes the search query the app automatically calls the API. The submit button is just for UX reasons.
+  // +++
 
   useEffect(() => {
     const getLyrics = async () => {
@@ -14,42 +34,37 @@ function App() {
     getLyrics();
   }, [artist, song]);
 
-  // fetch function
+  // +++++++++++++++++++++++++++++++++++++++++
+  // The API in use is located in a .env file to keep the data source a secret. It returns the data so we can use it throughout the app.
+  // +++
+
   const getApiData = async () => {
     const res = await fetch(`${process.env.REACT_APP_API}${artist}/${song}`);
     const apiData = await res.json();
     return apiData;
   };
 
-  // Onchange handlers for the form
-  const lookForSongHandleSubmit = (e) => {
-    e.preventDefault();
+  // +++++++++++++++++++++++++++++++++++++++++
+  //  The submit button is there just for UX reasons.
+  // +++
 
-    console.log(artist, song);
+  const SubmitButton = (e) => {
+    e.preventDefault();
+    setSubmitted(true);
   };
 
   return (
     <Container>
-      <form onSubmit={lookForSongHandleSubmit}>
-        <input
-          id="artist"
-          placeholder={artist}
-          name="artist"
-          type="text"
-          value={artist}
-          onChange={(e) => setArtist(e.target.value)}
-        />
-        <input
-          id="song"
-          placeholder={song}
-          name="song"
-          type="text"
-          value={song}
-          onChange={(e) => setSong(e.target.value)}
-        />
-        <button type="submit">submit</button>
-      </form>
-      {data.lyrics}
+      <Header />
+      <Form
+        submitted={submitted}
+        artist={artist}
+        setArtist={setArtist}
+        song={song}
+        setSong={setSong}
+        SubmitButton={SubmitButton}
+      />
+      <Lyrics data={data} />
     </Container>
   );
 }
