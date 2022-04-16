@@ -1,4 +1,4 @@
-import React from "react";
+import styled from "styled-components";
 
 export default function Form({
   SubmitButton,
@@ -9,7 +9,7 @@ export default function Form({
   submitted,
 }) {
   return (
-    <form onSubmit={SubmitButton}>
+    <Container onSubmit={SubmitButton}>
       <input
         id="artist"
         placeholder={artist}
@@ -18,7 +18,7 @@ export default function Form({
         value={artist}
         onChange={(e) => setArtist(e.target.value)}
       />
-      {submitted && !artist ? <span>Please put in a artist name.</span> : null}
+      {submitted && !artist ? <span>Please input artist name.</span> : null}
       <input
         id="song"
         placeholder={song}
@@ -26,9 +26,31 @@ export default function Form({
         type="text"
         value={song}
         onChange={(e) => setSong(e.target.value)}
-        />
-        {submitted && !song ? <span>Please put in a song.</span> : null}
-      <button type="submit">submit</button>
-    </form>
+      />
+      {submitted && !song ? <span>Please input song name.</span> : null}
+      {/* <button type="submit">submit</button> */}
+    </Container>
   );
 }
+
+const Container = styled.form`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 20vh;
+
+  input {
+    padding: 10px 40px;
+    margin: 10px;
+    border: none;
+    border-bottom: 2px solid tomato;
+    background-color: #222222;
+    color: rgb(209, 209, 209);
+    font-size: 30px;
+  }
+  input:focus {
+    outline: none;
+    color: tomato;
+  }
+`;

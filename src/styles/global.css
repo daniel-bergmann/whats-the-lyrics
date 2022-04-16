@@ -1,0 +1,13 @@
+@import url("https://fonts.googleapis.com/css2?family=Cabin:ital,wght@0,400;0,700;1,700&family=Quicksand:wght@300&display=swap");
+
+body {
+  font-family: "Cabin", sans-serif;
+  background-color: #222222;
+  color: rgb(209, 209, 209);
+  outline: none;
+}
+
+
+h1 {
+  font-size: 60px;
+}

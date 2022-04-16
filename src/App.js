@@ -17,8 +17,8 @@ function App() {
   // For the API
   const [data, setData] = useState([]);
   // For the inputs
-  const [artist, setArtist] = useState("Lady Gaga");
-  const [song, setSong] = useState("Pokerface");
+  const [artist, setArtist] = useState("Joy Division");
+  const [song, setSong] = useState("Love Will Tear Us Apart");
   // For the error handling - false = no value in form
   const [submitted, setSubmitted] = useState(false);
 
