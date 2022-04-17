@@ -17,6 +17,7 @@ const Container = styled.form`
   p {
     font-size: 1.5rem;
     line-height: 26pt;
+    margin: 10px;
   }
   p::selection {
     color: #333;
@@ -25,7 +26,7 @@ const Container = styled.form`
   /* Larger screens */
   @media (min-width: 768px) {
     p {
-      max-width: 30%;
+      max-width: 50%;
       font-size: 1.5rem;
     }
   }

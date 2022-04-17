@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
+import GithubCorner from "react-github-corner";
 
 // +++++++++++++++++++++++++++++++++++++++++
 // Components
@@ -17,8 +18,8 @@ function App() {
   // For the API
   const [data, setData] = useState([]);
   // For the inputs
-  const [artist, setArtist] = useState("Nick Cave");
-  const [song, setSong] = useState("Red Right Hand");
+  const [artist, setArtist] = useState("Joy Division");
+  const [song, setSong] = useState("Shadowplay");
   // For the error handling - false = no value in form
   const [submitted, setSubmitted] = useState(false);
 
@@ -55,6 +56,7 @@ function App() {
 
   return (
     <Container>
+      <GithubCorner href="https://github.com/daniel-bergmann/whats-the-lyrics" />
       <Header />
       <Form
         submitted={submitted}
